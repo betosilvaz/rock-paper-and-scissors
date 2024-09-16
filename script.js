@@ -39,11 +39,7 @@ function playRound() {
         playerScore += 1;
         console.log("Player won the round!");
     }
-    console.log("====================");
-    console.log("SCORES");
-    console.log(`Player: ${playerScore} points`);
-    console.log(`Computer: ${computerScore} points`);
-    console.log("====================");
+    printScores();
 }
 
 function playGame() {
@@ -51,6 +47,18 @@ function playGame() {
     for(let i = 0; i < numberOfRounds; i++) {
         playRound();
     }
+    printFinalScores();
+}
+
+function printScores() {
+    console.log("====================");
+    console.log("SCORES");
+    console.log(`Player: ${playerScore} points`);
+    console.log(`Computer: ${computerScore} points`);
+    console.log("====================");
+}
+
+function printFinalScores() {
     console.log("======================");
     console.log(`Final scores:\nPlayer: ${playerScore}\nComputer: ${computerScore}`);
     console.log("======================");
@@ -62,4 +70,5 @@ function playGame() {
         console.log("ITS A DRAW");
     }
 }
+
 playGame();
