@@ -10,15 +10,12 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let result = prompt("Type either 1, 2 or 3 to choose rock, paper or scissor: ");
-    if(result == 1) {
-        return "rock";
-    } else if(result == 2) {
-        return "paper";
-    } else if(result == 3) {
-        return "scissor";
+    let result = prompt("Type either rock, paper or scissor: ");
+    result = result.toLowerCase();
+    if(result == "rock" || result == "paper" || result == "scissor") {
+        return result;
     } else {
-        alert("Choice not supported. Please, choose again, between 1, 2 or 3")
+        alert("Choice not supported. Please, choose again, between rock, paper or scissor")
         return getHumanChoice();
     }
 }
@@ -26,18 +23,16 @@ function getHumanChoice() {
 let playerScore = 0;
 let computerScore = 0;
 
-function playRound() {
-    let computer = getComputerChoice();
-    let player = getHumanChoice();
+function playRound(player, computer) {
     console.log(`Player choose: ${player}\nComputer choose: ${computer}`);
     if(computer == player) {
         console.log("No one won, it's a draw! :(");
     } else if(computer == "rock" && player == "scissor" || computer == "paper" && player == "rock" || computer == "scissor" && player == "paper") {
         computerScore += 1;
-        console.log("Cumputer won the round!");
+        console.log(`You lose! ${computer} beats ${player}`);
     } else {
         playerScore += 1;
-        console.log("Player won the round!");
+        console.log(`You won! ${player} beats ${computer}`);
     }
     printScores();
 }
@@ -45,7 +40,9 @@ function playRound() {
 function playGame() {
     let numberOfRounds = 5;
     for(let i = 0; i < numberOfRounds; i++) {
-        playRound();
+        let computer = getComputerChoice();
+        let player = getHumanChoice();
+        playRound(player, computer);
     }
     printFinalScores();
 }
